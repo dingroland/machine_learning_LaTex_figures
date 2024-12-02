@@ -1,22 +1,4 @@
-\documentclass[12pt]{article}
-\usepackage[utf8]{inputenc}
-\usepackage{listings} 
-\usepackage{minted}
-\usepackage{tikz}
-\usetikzlibrary{trees}
-\usetikzlibrary{shapes,decorations}
-\usetikzlibrary {arrows.meta}
-\usepackage{graphicx} % Allows you to insert figures
-\usepackage{amsmath} % Allows you to do equations
-\usepackage{cleveref}
-\usepackage{fancyhdr} % Formats the header
-%\usepackage{geometry} % Formats the paper size, orientation, and margins
-\linespread{1.25} % about 1.5 spacing in Word
-\setlength{\parindent}{0pt} % no paragraph indents
-\setlength{\parskip}{1em} % paragraphs separated by one line
-\usepackage{graphicx} % Required for inserting images
-
-
+\documentclass{article}
 \usepackage[
     left=1in,    % Adjust left margin
     right=1in,   % Adjust right margin
@@ -29,170 +11,29 @@
 \usepackage{minted}
 \usetikzlibrary{shapes,decorations}
 \usetikzlibrary {arrows.meta}
+\usepackage{subcaption}
+\usepackage{pgfplots}
+\usepgfplotslibrary{statistics}
+\usepackage{subfigure}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.12}
+\pgfplotsset{compat=newest}
+
 
 \usetikzlibrary{arrows.meta, positioning}
 
 
-\title{Figures for ML}
-\author{This Document contains all figures used I used in ML}
-\date{September 2024}
+
+\title{ML 1 Assignments}
+\author{Daniel Rodinger}
+\date{19. September 2024}
 
 \begin{document}
 
 \maketitle
-\newpage
-\section{Semester 1}
-\subsection{Advanced Programming}
-\subsubsection
+\newpage 
 
-
-\begin{figure}[H]
-\begin{tikzpicture}
-    % Draw x and y axes
-    \draw[-{Stealth[length=2.5mm]}] (0,0) -- (6,0) node[anchor=north west] {x};
-    \draw[-{Stealth[length=2.5mm]}] (0,0) -- (0,6) node[anchor=south east] {y};
-
-    % Draw class A points (blue)
-    \filldraw[blue] (1,4.2) circle (3pt);
-    \filldraw[blue] (1.9,3.5) circle (3pt);
-    \filldraw[blue] (2.2,2.8) circle (3pt);
-    \filldraw[blue] (2.5,4.5) circle (3pt);
-    \filldraw[blue] (3.1,3.8) circle (3pt);
-
-    % Draw class B points (green)
-    \filldraw (4.5,2.5) circle (3pt);
-    \filldraw (3.8,3.2) circle (3pt);
-    \filldraw (4.4,4.0) circle (3pt);
-    \filldraw (3.5,4.2) circle (3pt);
-    \filldraw (5.0,3.7) circle (3pt);
-    
-    % Draw the query point (red star)
-    \node[diamond, fill=red] at (3,3) {};
-    \node[red] at (3.4,2.9) {q};
-    
-    % Draw circles representing K-nearest neighbor areas
-    \draw[dashed] (3,3) circle (1);
-    %\draw[dashed] (3,3) circle (1.5);
-
-    % Add text for K values
-    \node at (3,1.8) {k = 3};
-    %\node at (5,2) {k = 7};
-
-    % Add class labels
-    \node[blue] at (1,.5) {Class A};
-    \node at (1,1) {Class B};
-    \node[red] at (1,1.5) {Query q};
-
-\end{tikzpicture}
-\qquad
-\begin{tikzpicture}
-    % Draw x and y axes
-    \draw[-{Stealth[length=2.5mm]}] (0,0) -- (6,0) node[anchor=north west] {x};
-    \draw[-{Stealth[length=2.5mm]}] (0,0) -- (0,6) node[anchor=south east] {y};
-
-
-    % Draw class A points (blue)
-    \filldraw[blue] (1,4.2) circle (3pt);
-    \filldraw[blue] (1.9,3.5) circle (3pt);
-    \filldraw[blue] (2.2,2.8) circle (3pt);
-    \filldraw[blue] (2.5,4.5) circle (3pt);
-    \filldraw[blue] (3.1,3.8) circle (3pt);
-
-    % Draw class B points (green)
-    \filldraw (4.5,2.5) circle (3pt);
-    \filldraw (3.8,3.2) circle (3pt);
-    \filldraw (4.4,4.0) circle (3pt);
-    \filldraw (3.5,4.2) circle (3pt);
-    \filldraw (5.0,3.7) circle (3pt);
-    
-    % Draw the query point (red star)
-    %\filldraw[blue] (3, 3) circle (4pt);
-    \node[diamond, fill=blue] at (3,3) {};
-    \node[blue] at (3.4,2.9) {q};
-    
-    % Draw circles representing K-nearest neighbor areas
-    \draw[dashed] (3,3) circle (1);
-    %\draw[dashed] (3,3) circle (1.5);
-
-    % Add text for K values
-    \node at (3,1.8) {k = 3};
-    % \node at (5,2) {k = 7};
-
-    % Add class labels
-    \node[blue] at (1,.5) {Class A};
-    \node at (1,1) {Class B};
-    \node[blue] at (1,1.5) {Query q};
-
-\end{tikzpicture}
-\caption{Query point $q$ before and after performing kNN}
-\end{figure}
-\subsubsection{kD-Trees}
-
-\begin{figure}[H]
-\centering
-\begin{tikzpicture}[level distance=1.5cm,
-  level 1/.style={blue, sibling distance=3cm},
-  level 2/.style={red,sibling distance=1.5cm}]
-  \node[red] {(5,4)}
-    child {node {(2,6)}
-      child{node {(3,1)}}
-    }
-    child {node {(13,3)}
-      child {node {(10,2)}}
-      child{node {(8,7)}}
-    };
-    
-\end{tikzpicture}
-\caption{kD-tree from set $D = [(5,4), (2,6), (13,3), (8,7), (3,1), (10,2)]$} with $k=2$ dimensions\label{fig:kd_tree}
-\end{figure}
-
-
-\subsubsection{kNN with kD-Trees}
-\begin{figure}[H]
-\centering
-\begin{tikzpicture}[
-red_dot/.style={circle, fill=red, scale=0.5},
-blue_dot/.style={circle, fill=blue, scale=0.5},
-orange_dot/.style={circle, fill=black!40!green, scale=0.5}
-]
-% Draw x and y axes
-    \draw[-{Stealth[length=2.5mm]}] (-1,0) -- (15,0) node[anchor=north west] {x};
-    \draw[-{Stealth[length=2.5mm]}] (0,-1) -- (0,8) node[anchor=south east] {y};
-
-% Draw red points from D
-    \node[red_dot,label=right:{$(3,1)$}] (n1) at (3,1) {};
-    \node[red_dot,label=left:{$(5,4)$}] (n1) at (5,4) {};
-    \node[red_dot,label=above left:{$p_{approx}=(8,7)$}] (n1) at (8,7) {};
-    \node[red_dot,label=left:{$p_{close}=(10,2)$}] (n1) at (10,2) {};
-% Draw blue points from D
-    \node[blue_dot,label=above:{$(2,6)$}] (n1) at (2,6) {};
-    \node[blue_dot,label=above:{$(13,3)$}] (n1) at (13,3) {};
-% Draw q
-    \node[orange_dot,label=right:{$q=(9,4)$}] (n1) at (9,4) {};
-
-% Draw vertical lines
-    \draw[{Stealth[length=2.5mm]}-{Stealth[length=2.5mm]}, red] (3,-1) -- (3,6){};
-    \draw[{Stealth[length=2.5mm]}-{Stealth[length=2.5mm]}, red] (5,-1) -- (5,8){};
-    \draw[{Stealth[length=2.5mm]}-{Stealth[length=2.5mm]}, red] (8,3) -- (8,8){};
-    \draw[{Stealth[length=2.5mm]}-{Stealth[length=2.5mm]}, red] (10,-1) -- (10,3){};
-% Draw horizontal lines
-    \draw[{Stealth[length=2.5mm]}-{Stealth[length=2.5mm]}, blue] (-1,6) -- (5,6){};
-    \draw[{Stealth[length=2.5mm]}-{Stealth[length=2.5mm]}, blue] (5,3) -- (15,3){};
-% Draw S
-    \draw[dashed, very thick] (9,4) circle[radius=3.16];
-    \node[thick] at (12,6) {$S$};
-% Draw bin
-    \filldraw[fill=yellow, fill opacity=0.2, draw=none] (5,3) rectangle (15,-1);
-    \filldraw[fill=violet, fill opacity=0.1, draw=none] (5,3) rectangle (15,8);
-% Draw helper lines
-    \draw[dashed, thick] (8,7) -- (9,4);
-    \draw[dashed, thick] (9,4) -- (9,3);
-\end{tikzpicture}
-\caption{From point $(5,4) D$ is split in half and an initial depth first search on the right branch of \cref{fig:kd_tree} is performed and leads to $p_{approx}$. BWB test with sphere $S$ shows that $p_{close}$ is not located in the purple bin and backtracking is performed}\label{fig:M1}
-\end{figure}
-
-\subsection{Machine Learning 1}
-\subsubsection{Assignment 2}
+\section{Assignment 2}
 \subsection{Regression}
 \begin{figure}[h]
 \centering
@@ -356,7 +197,7 @@ The steps are:
 
 \newpage
 
-\subsubsection{Assignment 3}
+\section{Assignment 3}
 \subsection{Train-Test Split}
 
 \begin{figure}[h]
@@ -487,58 +328,58 @@ The True-Positive Rate (TPR) measures the correctly identified labels. TPR is cr
 The True-Negative Rate measures the proportion of actual negatives correctly identified. A high TNR is crucial when avoiding false positives is crucial (e.g. marking credit card transactions as non fraud). It is defined by: 
 \[ TNR = \frac{TN}{TN+FP}\]
 
-\subsubsection{Assignment 4}
+\section{Assignment 4}
 Explain “hyper parameters“ and “K nearest neighbours“ in your own words.
 \subsection{Hyperparameters}
-\begin{figure} [h]
-		\begin{center}  
-			\subfigure 
-			{ 
-				\begin{tikzpicture}[scale=.6]
-					\draw [thin](0,0) grid (5,5);
-					\draw[very thick] (0,5) to(3,5);
-					\draw[very thick] (0,2) to(3,2);
-					\draw[very thick] (0,5) to(0,2);
-					\draw[very thick] (3,2) to(3,5);
-					\draw[->,>=stealth,thick](2.7,3.5) to (4.4,3.5);
-					\draw[->,>=stealth,thick](1.5,2.3) to (1.5,0.6);
-					\draw[->,>=stealth,thick](5.2,2.5) to (5.7,2.5);
-					\draw[very thick] (6,1.5) to(6,3.5);
-					\draw[very thick] (8,1.5) to(8,3.5);
-					\draw[very thick] (6,1.5) to(8,1.5);
-					\draw[very thick] (6,3.5) to(8,3.5);
-					\draw[very thick] (6,2.5) to(8,2.5);
-					\draw[very thick] (7,1.5) to(7,3.5);
-				\end{tikzpicture}
-			}
-		\hspace{1cm}
-			\subfigure 
-			{ 
-				\begin{tikzpicture}[scale=.6]
-					\draw [thin](0,0) grid (5,5);
-					\draw[very thick] (0,5) to(3,5);
-					\draw[very thick] (0,2) to(3,2);
-					\draw[very thick] (0,5) to(0,2);
-					\draw[very thick] (3,2) to(3,5);
-					\draw[->,>=stealth,thick](2.7,3.5) to (3.5,3.5);
-					\draw[->,>=stealth,thick](3.7,3.5) to (4.5,3.5);
-					\draw[->,>=stealth,thick](1.5,2.3) to (1.5,1.5);
-					\draw[->,>=stealth,thick](1.5,1.3) to (1.5,0.5);
-					\draw[->,>=stealth,thick](5.2,2.5) to (5.7,2.5);
-					\draw[very thick] (6,4) to(6,1);
-					\draw[very thick] (7,4) to(7,1);
-					\draw[very thick] (8,4) to(8,1);
-					\draw[very thick] (9,4) to(9,1);
-					\draw[very thick] (9,4) to(6,4);
-					\draw[very thick] (9,3) to(6,3);
-					\draw[very thick] (9,2) to(6,2);
-					\draw[very thick] (9,1) to(6,1);
-					
-				\end{tikzpicture}
-			}
-			\caption{Example of stride}
-		\end{center}
-	\end{figure}
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=.6]
+            \draw [thin](0,0) grid (5,5);
+            \draw[very thick] (0,5) to(3,5);
+            \draw[very thick] (0,2) to(3,2);
+            \draw[very thick] (0,5) to(0,2);
+            \draw[very thick] (3,2) to(3,5);
+            \draw[->,>=stealth,thick](2.7,3.5) to (4.4,3.5);
+            \draw[->,>=stealth,thick](1.5,2.3) to (1.5,0.6);
+            \draw[->,>=stealth,thick](5.2,2.5) to (5.7,2.5);
+            \draw[very thick] (6,1.5) to(6,3.5);
+            \draw[very thick] (8,1.5) to(8,3.5);
+            \draw[very thick] (6,1.5) to(8,1.5);
+            \draw[very thick] (6,3.5) to(8,3.5);
+            \draw[very thick] (6,2.5) to(8,2.5);
+            \draw[very thick] (7,1.5) to(7,3.5);
+        \end{tikzpicture}
+        \caption{Stride example 1}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=.6]
+            \draw [thin](0,0) grid (5,5);
+            \draw[very thick] (0,5) to(3,5);
+            \draw[very thick] (0,2) to(3,2);
+            \draw[very thick] (0,5) to(0,2);
+            \draw[very thick] (3,2) to(3,5);
+            \draw[->,>=stealth,thick](2.7,3.5) to (3.5,3.5);
+            \draw[->,>=stealth,thick](3.7,3.5) to (4.5,3.5);
+            \draw[->,>=stealth,thick](1.5,2.3) to (1.5,1.5);
+            \draw[->,>=stealth,thick](1.5,1.3) to (1.5,0.5);
+            \draw[->,>=stealth,thick](5.2,2.5) to (5.7,2.5);
+            \draw[very thick] (6,4) to(6,1);
+            \draw[very thick] (7,4) to(7,1);
+            \draw[very thick] (8,4) to(8,1);
+            \draw[very thick] (9,4) to(9,1);
+            \draw[very thick] (9,4) to(6,4);
+            \draw[very thick] (9,3) to(6,3);
+            \draw[very thick] (9,2) to(6,2);
+            \draw[very thick] (9,1) to(6,1);
+        \end{tikzpicture}
+        \caption{Stride example 2}
+    \end{subfigure}
+    \caption{Examples of stride operations.}
+\end{figure}
  Hyper parameters are external configuration variables to manage machine learning training. They are determined through tests and are not obtained from the actual data. They determine how a model learns and are therefore critical for fine-tuning. Examples include:
  \begin{itemize}
      \item Stride: Step size of filter
@@ -637,7 +478,7 @@ K-nearest-neighbours (KNN) is a machine learning algorithm. it classifies points
 \end{itemize}
 
 \newpage 
-\subsubsection{Assignment 5}
+\section{Assignment 5}
 \subsection{Missing Data}
 
 
@@ -692,4 +533,713 @@ When dealing with missing data there are several strategies for different scenar
     \end{itemize}
     \item \textbf{No Action}: in some case algorithms can handle missing values.
 \end{itemize}
+\section{Assignment 6}
+
+\subsection{Transformation}
+
+\begin{figure}[H]
+\centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}
+            % Axes
+            \draw[-Stealth] (0, 0) -- (5, 0) node[right] {$x$};
+            \draw[-Stealth] (0, 0) -- (0, 4) node[above] {$y$};
+            
+            % Exponential curve
+            \draw[domain=0:4,smooth,variable=\x,thick] plot ({\x}, {exp(\x) / 10});
+            
+            % Label for curve
+        \end{tikzpicture}
+        \caption{Exponential Distribution}
+        \label{fig:exp_distribution}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}
+            % Axes
+            \draw[-Stealth] (0, 0) -- (5, 0) node[right] {$x$};
+            \draw[-Stealth] (0, 0) -- (0, 4) node[above] {$y$};
+            
+            % Log-transformed line (for log(x), starts at x=1 to avoid log(0))
+            \draw[domain=0:3,smooth,variable=\x,thick] plot ({\x}, {\x});
+            
+            % Label for curve
+        \end{tikzpicture}
+        \caption{Distribution after Transformation}
+        \label{fig:log_transformed}
+    \end{subfigure}
+    \caption{Exponential Distribution and Log Transformed Line Side by Side}
+    \label{fig:combined_plots}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    % First histogram (original feature distribution)
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                ybar,
+                ymin=0,
+                ymax=60,
+                xlabel={Distribution},
+                ylabel={Frequency},
+                title={Original Distribution},
+                bar width=0.25cm
+            ]
+            \addplot coordinates {
+                (1, 10) (2, 20) (3, 30) (4, 50) (5, 45) 
+                (6, 25) (7, 20) (8, 10) (9, 5) (10, 3) (11, 2) (12, 1)
+            };
+            \end{axis}
+        \end{tikzpicture}
+    \end{subfigure}
+    \hfill
+    % Second histogram (log-transformed feature distribution)
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                ybar,
+                ymin=0,
+                ymax=35,
+                xlabel={Distribution},
+                ylabel={Frequency},
+                title={Distribution after Transformation},
+                bar width=0.25cm
+            ]
+            \addplot coordinates {
+                (0.75, 25) (1.00, 30) (1.25, 27) (1.50, 20) (1.75, 18)
+                (2.00, 15) (2.25, 10) (2.50, 5)
+            };
+            \end{axis}
+        \end{tikzpicture}
+    \end{subfigure}
+    \caption{Original and Log-Transformed Feature Distributions}
+\end{figure}
+
+After transformation distribution becomes more normalized and the range of values is compressed.
+
+\subsection{One-Hot Encoding}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=1]
+ % Original dataset
+    \node at (1, 1.5) {Original Data};
+    \draw (0, 1) -- (2.5, 1);
+    \node at (1.25, 0.8) {Season};
+    \node at (1.25, 0.4) {Autumn};
+    \node at (1.25, 0) {Winter};
+
+    % Arrow
+    \draw[-Stealth] (3, 0.5) -- (5, 0.5);
+
+    % One-hot encoding output
+    \node at (7, 1.5) {One-Hot Encoding};
+    \draw (5, 1) -- (10, 1);
+    \node at (6, 0.8) {Autumn};
+    \node at (7.5, 0.8) {Winter};
+    \node at (9, 0.8) {Spring};
+    \node at (6, 0.4) {1};
+    \node at (7.5, 0.4) {0};
+    \node at (9, 0.4) {0};
+    \node at (6, 0) {0};
+    \node at (7.5, 0) {1};
+    \node at (9, 0) {0};
+
+\end{tikzpicture}
+    \caption{Normalization of Data}
+    \label{fig:regression_example}
+\end{figure}
+
+\subsection{Handling Outliers}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=1]
+
+\begin{axis}
+    [title = {Some example Data},ylabel = {},
+    boxplot/draw direction=y,
+    xtick={1,2,3},
+    xticklabels={Feature 1, Feature 2, Feature 3},
+    x tick label style={font=\footnotesize, text width=2.5cm, align=center}
+    ]
+    \addplot+[mark = *, mark options = {red},
+    boxplot prepared={
+      lower whisker=2.214844,
+      lower quartile=3.608312,
+      median=3.895478,
+      upper quartile=4.447298,
+      upper whisker=4.666284
+    }, color = red
+    ] coordinates{(0,4.832228)(0,5.513942)(0,6.29165)(0,5.216712)(0,5.677036)(0,4.981995)(0,5.172095)(0,7.056417)};
+    \addplot+[mark = *,mark options = {blue},
+    boxplot prepared={
+      lower whisker=3.508799,
+      lower quartile=5.079821,
+      median=5.481519,
+      upper quartile=5.971588,
+      upper whisker=6.250831
+    }, color = blue
+    ] coordinates{(0,6.508115)(0,6.486354)(0,6.860059)(0,6.620663)(0,7.312391)(0,7.357306)(0,6.421694)
+    (0,6.479597)(0,6.690945)(0,6.661593)(0,7.271025)(0,6.396931)(0,7.035161)(0,7.371248)(0,7.033689)
+    (0,7.002645)(0,6.590617)(0,7.171933)(0,6.416259)(0,7.552438)};
+    \addplot+[mark = *,mark options = {green},
+    boxplot prepared={
+      lower whisker=2.437751,
+      lower quartile=3.334956,
+      median=4.336029,
+      upper quartile=5.068459,
+      upper whisker=5.265037
+    }, color = green
+    ] coordinates{(0,5.826492)(0,5.819791)(0,6.21436)(0,7.47166)};
+    \end{axis}
+\end{tikzpicture}
+    \caption{Bxoplots with Outliers}
+    \label{fig:regression_example}
+\end{figure}
+Outliers are observations in a given dataset that lie far away from the rest of the observations. They may occur due to variability in data or error. The following table shows the effects of outliers on three important measures to describe data (Mean, Median and Mode). The median is the middle value when a data set is ordered from least to greatest. The mode is the number that occurs most often in a data set.
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+         & with outlier        & without outlier    \\ \hline
+Mean     & 20.08               & 12.72              \\ \hline
+Median   & 14.0                & 13.0               \\ \hline
+Mode     & 15                  & 15                 \\ \hline
+Variance & 614.74              & 21.28              \\ \hline
+Std dev  & 24.79               & 4.61               \\ \hline
+\end{tabular}
+\caption{Statistical Comparison: With and Without Outliers}
+\end{table}
+\subsection{Class Imbalance}
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[scale=1]
+%\node at (0,2) {Class Imbalance};
+
+    % Draw bars representing class counts
+    \draw (0,0) rectangle (1,1); % Class 1
+    \draw (2,0) rectangle (3,4); % Class 2
+    \node at (0.5,-0.3) {Class 1};
+    \node at (2.5,-0.3) {Class 2};
+
+\end{tikzpicture}
+    \caption{Class Imbalance}
+    \label{fig:regression_example}
+\end{figure}
+Class imbalance occurs when the dataset has an unequal distribution of classes. This can lead to bias. Resampling is a technique to address class imbalance in machine learning by adjusting the class distribution in the training set. Oversampling increases the minority class, while undersampling reduces the majority class. Both are effective but come with downsides: 
+\begin{itemize}
+    \item \textbf{Oversampling}: Duplicating minority class samples can cause the model to overfit, learning patterns specific to those duplicated instances rather than generalizable ones.
+    
+    \item \textbf{Undersampling}: Reducing majority class samples can result in the loss of valuable information, causing the model to miss important patterns and generalize poorly.
+\end{itemize}
+
+\subsection{Feature Selection}
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[scale=1]
+% Original dataset features
+    \node at (0,3) {Original Features};
+    \draw (0,2) rectangle (1,2.5); % Feature 1
+    \draw (0,1.5) rectangle (1,2); % Feature 2
+    \draw (0,1) rectangle (1,1.5); % Feature 3
+    \draw (0,0.5) rectangle (1,1); % Feature 4
+    \draw (0,0) rectangle (1,0.5); % Feature 5
+
+    % Arrow
+    \draw[-Stealth] (1.5, 1.25) -- (3.5, 1.25);
+
+    % Selected features
+    \node at (4, 3) {Selected Features};
+    \draw (4,2) rectangle (5,2.5); % Feature 1
+    \draw (4,1.5) rectangle (5,2); % Feature 3
+
+\end{tikzpicture}
+    \caption{Feature Selection}
+    \label{fig:regression_example}
+\end{figure}
+Feature selection is crucial  for improving model performance, reducing overfitting, and enhancing interpretability. It reduces the dimensionality of input data by removing irrelevant or redundant features.
+
+\begin{itemize}
+    \item \textbf{Enhanced Model Performance}: Selecting relevant features leads to more accurate and efficient models.
+    \item \textbf{Reduced Overfitting}: Excluding irrelevant features prevents overfitting.
+    \item \textbf{Improved Interpretability}: Models with fewer features are easier to interpret and explain.
+    \item \textbf{Faster Training and Inference}: A reduced feature set speeds up both training and inference phases.
+\end{itemize}
+\subsubsection{Principal Component Analysis (PCA)}
+
+\textbf{Purpose}: Reduces the number of features by transforming the original features into a smaller set of uncorrelated variables, called principal components.
+
+\textbf{Application in Facial Recognition}: PCA is widely used in facial recognition tasks. It captures the most important features, such as contours and shapes, that help distinguish between different faces.
+
+\textbf{Example}: One popular example is \textit{Eigenfaces}, a PCA-based approach for face recognition. Eigenfaces reduce the dimensionality of face images by focusing on the principal components that represent the most variance in facial features, allowing for more efficient facial recognition.
+
+\section{Assignment 8}
+\subsection{Overfitting}
+%overfitting
+	\begin{figure}[H]
+		\begin{center}
+				\begin{tikzpicture}[scale=1]
+					\begin{axis}[xmin=0, xmax=10, ymin=0.5, ymax=5,
+						xlabel=Time, % Set the labels
+						ylabel=Data,
+						xticklabels=none,
+						yticklabels=none]
+						\addplot[black,line width=1pt,rounded corners=1pt] coordinates {
+							(1,4.5)
+							(0.3,3.6)
+							(1.3,2.5)
+							(0.6,1.8)
+							(0.7,0.9)
+							(2,1.1)
+							(3.5,1.9)
+							(4.7,1.3)
+							(6,1.5)
+							(7.6,1.7)
+							(8.7,2.3)
+						};
+					\addplot[mark=*] coordinates {(1,4.5)
+						(0.3,3.6)
+						(1.3,2.5)
+						(0.6,1.8)
+						(0.7,0.9)
+						(2,1.1)
+						(3.5,1.9)
+						(4.7,1.3)
+						(6,1.5)
+						(7.6,1.7)
+						(8.7,2.3)};
+					\end{axis}
+				\end{tikzpicture} 
+			\caption{Overfitting}
+		\end{center}
+	\end{figure}
+ \begin{itemize}
+    \item \textbf{Definition:} Overfitting occurs when a model learns not only the underlying patterns in the training data but also the noise and fluctuations, leading to poor generalization on unseen data.
+    \item \textbf{Example in Image Recognition:} An overfitted image recognition model might recognize specific lighting or background features in training images as essential to the class, failing to generalize to new images with different lighting or backgrounds.
+    \item \textbf{Example in Decision Trees:} In decision trees, overfitting may occur when the tree is allowed to grow too deep, capturing minor variations in the data, which results in overly complex decision rules that don’t generalize well.
+    \item \textbf{Indicators:}
+        \begin{itemize}
+            \item High accuracy on training data but low accuracy on test data.
+            \item Decision boundaries or fitted curves that follow data points too closely, as shown above.
+        \end{itemize}
+\end{itemize}
+
+\subsection{Underfitting}
+%underfitting
+\begin{figure}[H] 
+	\begin{center}
+		\begin{tikzpicture}[scale=1]
+			\begin{axis}[xmin=0, xmax=10, ymin=0.5, ymax=5,
+				xlabel=Time, % Set the labels
+				ylabel=Data,
+				xticklabels=none,
+				yticklabels=none]
+				\addplot[black,line width=1pt,rounded corners=1pt] coordinates {
+					(0.5,1.6)
+					(4,2.6)
+					(6,1.5)
+					(8.7,1.7)
+				};
+			\addplot[mark=*] coordinates {(1,4.5)};
+			\addplot[mark=*] coordinates {(0.3,3.6)};
+			\addplot[mark=*] coordinates {(1.3,2.7)};
+			\addplot[mark=*] coordinates {(1.3,2.7)};
+			\addplot[mark=*] coordinates {(0.5,1.6)};
+			\addplot[mark=*] coordinates {(0.9,1.1)};
+			\addplot[mark=*] coordinates {(2,1.3)};
+			\addplot[mark=*] coordinates {(4,2.6)};
+			\addplot[mark=*] coordinates {(5,0.9)};
+			\addplot[mark=*] coordinates {(6,1.5)};
+			\addplot[mark=*] coordinates {(7.6,1.3)};
+			\addplot[mark=*] coordinates {(8.7,2.6)};
+			\end{axis}
+		\end{tikzpicture} 
+		\caption{Underfitting}
+	\end{center}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Definition:} Underfitting happens when a model is too simplistic, failing to capture the underlying patterns in the training data.
+    \item \textbf{Example in Image Recognition:} An underfitted image recognition model might struggle to distinguish between different objects, as it hasn't learned sufficient details about each class.
+    \item \textbf{Example in Decision Trees:} In decision trees, underfitting can occur when the tree depth is too shallow, producing overly general decision rules that cannot effectively separate classes.
+    \item \textbf{Indicators:}
+        \begin{itemize}
+            \item Low accuracy on both training and test data.
+            \item Simplistic decision boundaries or fitted lines that don’t capture data variations, as shown above.
+        \end{itemize}
+    \end{itemize}
+\section{Assignment 9}
+\subsection{Regression}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+
+% Draw grid
+\draw[step=0.5cm, gray, very thin] (0,0) grid (6,4);
+% Draw axes
+\draw[-Stealth] (0,0) -- (6,0) node[right] {Feature};
+\draw[-Stealth] (0,0) -- (0,4) node[above] {Target};
+
+%Draw example
+\draw[purple] (1.5,-0.1) -- (1.5,1.5) node[yshift=-55px] {given Feature};
+\draw[purple] (-0.1,1.5) -- (1.5,1.5) node[xshift=-85px] {estimated 
+Target};
+
+% Plot data points
+\foreach \x/\y in {0.5/0.8, 1/0.9, 1.3/1.6, 1.5/1.8, 2/1.6, 2.5/2.5, 2.8/2.6, 3/2.3, 3.5/3.3, 4/3.1, 4.5/3.6, 4.8/4.3}
+{
+    \filldraw[blue] (\x,\y) circle (2pt);
+}
+
+% Draw regression line
+\draw[red, thick] (0.2,0.5) -- (5.5,4.5) node[right] {Regression Line};
+\node[above left, red] at (8,3.5) {$y=kx+d$};
+
+\end{tikzpicture}
+    \caption{This figure illustrates a regression line applied to a dataset. }
+    \label{fig:regression_example}
+\end{figure}
+Linear Regression is a statistical method used to model the relationship between a dependent variable \( y \) and one or more independent variables \( x \). In simple linear regression, where there is only one independent variable, the relationship can be represented by the equation:
+\[
+y = \beta_0 + \beta_1 x + \epsilon
+\]
+where:
+\begin{itemize}
+    \item \( y \) is the dependent variable (target),
+    \item \( x \) is the independent variable (feature),
+    \item \( \beta_0 \) is the y-intercept of the regression line,
+    \item \( \beta_1 \) is the slope of the line, which indicates the change in \( y \) for a one-unit change in \( x \),
+    \item \( \epsilon \) represents the error term, capturing the residuals or deviations of actual values from predicted values.
+\end{itemize}
+
+The goal of linear regression is to estimate \( \beta_0 \) and \( \beta_1 \) to minimize the sum of the squared residuals, providing the best linear fit for the data.
+
+
+\subsection{$R^2$}
+The coefficient of determination, \( R^2 \), is a metric used to evaluate the performance of a regression model. It indicates the proportion of variance in the dependent variable \( y \) that is predictable from the independent variable \( x \). The formula for \( R^2 \) is:
+\[
+R^2 = 1 - \frac{\sum (y_i - \hat{y}_i)^2}{\sum (y_i - \bar{y})^2}
+\]
+where:
+\begin{itemize}
+    \item \( y_i \) represents the actual values of the dependent variable,
+    \item \( \hat{y}_i \) are the predicted values from the regression model,
+    \item \( \bar{y} \) is the mean of the actual values of \( y \).
+\end{itemize}
+
+An \( R^2 \) value closer to 1 indicates a better fit, meaning that a larger portion of the variance in \( y \) is explained by \( x \). Conversely, an \( R^2 \) close to 0 suggests that the model does not effectively capture the variance in \( y \).
+
+\section{Assignment 10}
+\subsection{Clustering - k-Means}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+  \begin{axis}[
+        width=\linewidth,
+        title={KMeans Predictions (\$k=2\$)},
+        xmin=0, xmax=10, ymin=0, ymax=100,
+        xlabel={Eruption time (minutes)},
+        ylabel={Time between eruptions (minutes)},
+        grid=major
+        ]
+       % Centroid 1
+       \node[text=blue, font=\sffamily\bfseries, scale=2] at (axis cs: 3,30) {X};
+       \addplot+[
+           y filter/.expression={y+10},
+           only marks, mark=*, samples=50, domain=1:5
+       ] {40*rnd};
+
+       % Centroid 2
+       \node[text=red, font=\sffamily\bfseries, scale=2] at (axis cs: 7,70) {X};
+       \addplot+[
+           y filter/.expression={y+50},
+           only marks, mark=*, mark options={fill=red}, samples=50, domain=5:9
+       ] {40*rnd};
+  \end{axis}
+\end{tikzpicture}
+\caption{Illustration of the k-means clustering process with two clusters (\$k=2\$). The blue and red points represent the data points assigned to their respective centroids (marked with X).}
+\label{fig:kmeans_clusters}
+\end{figure}
+
+\subsection{Key Ideas of k-Means}
+\begin{enumerate}
+    \item \textbf{Random Initialization:} Centroids are initialized randomly to kickstart the clustering process.
+    \item \textbf{Assignment Step:} Each data point is assigned to the nearest centroid based on a distance metric (e.g., Euclidean distance).
+    \item \textbf{Update Step:} Centroids are updated by computing the mean of all assigned points in each cluster.
+    \item \textbf{Iterative Process:} The steps are repeated until the centroids stabilize (i.e., convergence) or the maximum number of iterations is reached.
+\end{enumerate}
+
+\subsection{Strengths and Weaknesses of k-Means}
+\begin{itemize}
+    \item \textbf{Strengths:}
+        \begin{itemize}
+            \item Simple to understand and implement.
+            \item Computationally efficient for smaller datasets.
+            \item Works well with spherical, well-separated clusters.
+        \end{itemize}
+    \item \textbf{Weaknesses:}
+        \begin{itemize}
+            \item Sensitive to initialization of centroids, which can lead to suboptimal clustering.
+            \item Struggles with non-spherical clusters or clusters with varying sizes and densities.
+            \item Requires predefining the number of clusters ($k$).
+        \end{itemize}
+\end{itemize}
+
+\subsection{Find the perfect k}
+
+Choosing the optimal number of clusters (\(k\)) in k-means is crucial for effective clustering. One widely used method is the \textbf{Elbow Method}, which involves the following steps:
+
+\begin{enumerate}
+    \item \textbf{Calculate Within-Cluster Sum of Squares (WCSS):}
+    \begin{itemize}
+        \item WCSS measures the compactness of clusters. A lower WCSS indicates tighter clusters.
+    \end{itemize}
+    \item \textbf{Run k-means for Multiple \(k\) Values:}
+    \begin{itemize}
+        \item Evaluate WCSS for different values of \(k\) (e.g., 1 to 10).
+    \end{itemize}
+    \item \textbf{Plot the Elbow Curve:}
+    \begin{itemize}
+        \item Plot \(k\) on the x-axis and WCSS on the y-axis. The curve typically decreases rapidly at first and then flattens out.
+    \end{itemize}
+    \item \textbf{Identify the "Elbow" Point:}
+    \begin{itemize}
+        \item The optimal \(k\) is where the rate of WCSS reduction slows significantly (the "elbow"). Adding more clusters beyond this point provides diminishing returns in compactness.
+    \end{itemize}
+\end{enumerate}
+Within-Cluster Sum of Squares (WCSS) measures the compactness of the clusters formed by k-means. It is defined as:
+
+\[
+WCSS = \sum_{k=1}^{K} \sum_{x_i \in C_k} \|x_i - c_k\|^2
+\]
+
+Where:
+\begin{itemize}
+    \item \(K\) is the total number of clusters.
+    \item \(x_i\) is a data point belonging to cluster \(C_k\).
+    \item \(c_k\) is the centroid of cluster \(C_k\).
+    \item \(\|x_i - c_k\|^2\) represents the squared distance between the data point and the centroid of its cluster.
+\end{itemize}
+
+Minimizing WCSS helps in finding compact clusters and is used in the elbow method to determine the optimal number of clusters.
+
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+  \begin{axis}[
+        width=\linewidth,
+        title={Elbow Plot for KMeans Clustering},
+        xlabel={Number of Clusters ($k$)},
+        ylabel={Within-Cluster Sum of Squares (WCSS)},
+        xmin=1, xmax=6, ymin=0, ymax=100,
+        xtick={1,2,3,4,5,6},
+        ytick={0,20,40,60,80,100},
+        grid=major,
+        legend pos=north east
+        ]
+    % Example WCSS data points (without smoothing)
+    \addplot+[
+        mark=*, mark options={fill=blue},
+        color=blue,
+        thick
+    ] coordinates {
+        (1, 100)
+        (2, 60)
+        (3, 40)
+        (4, 33)
+        (5, 30)
+        (6, 28)
+    };
+    \addlegendentry{WCSS}
+
+    % Highlight the "elbow"
+    \node[circle, draw=red, fill=red, inner sep=1pt, label=right:{Optimal $k=3$}] at (axis cs: 3,40) {};
+  \end{axis}
+\end{tikzpicture}
+
+\caption{Elbow plot showing the optimal number of clusters ($k=3$) for k-means clustering. The Within-Cluster Sum of Squares (WCSS) decreases sharply at $k=3$ and levels off afterward, indicating the optimal $k$.}
+\label{fig:elbow_plot}
+\end{figure}
+
+\textbf{Example:} In the sample plot, the "elbow" occurs at \(k=3\), indicating that three clusters provide a good balance between compactness and simplicity. This ensures meaningful clustering without overfitting or underfitting the data.
+
+\section{Assignment 11}
+
+\subsection{}section*{Hierarchical Clustering}
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[scale=1.5]
+
+    % Step 1: Data points
+    \fill[blue] (0,0) circle (2pt) node[below] {A};
+    \fill[blue] (1,0.5) circle (2pt) node[below] {B};
+    \fill[blue] (2,-0.2) circle (2pt) node[below] {C};
+    \fill[blue] (3,0.7) circle (2pt) node[below] {D};
+    \fill[blue] (4,0) circle (2pt) node[below] {E};
+
+    % Step 2: Merging pairs
+    % Dendrogram lines
+    \draw[thick] (0,0) -- (0,1) -- (1,1) -- (1,0.5); % Merge A and B
+    \draw[thick] (2,-0.2) -- (2,1.2) -- (3,1.2) -- (3,0.7); % Merge C and D
+
+    % Step 3: Merging clusters
+    \draw[thick] (0.5,1) -- (0.5,2) -- (2.5,2) -- (2.5,1.2); % Merge (A,B) and (C,D)
+
+    % Step 4: Final merge
+    \draw[thick] (2.5,2) -- (2.5,3) -- (4,3) -- (4,0); % Merge (A,B,C,D) and E
+
+    % Labels for clusters
+    \node at (-0.5, 1.2) {Cluster 1};
+    \node at (3.5, 1.4) {Cluster 2};
+    \node at (4.5, 3.2) {Final Cluster};
+
+    % Axis Labels
+    \node[below] at (2, -1) {Data Space};
+    \node[rotate=90] at (-1.3, 2) {Cluster Distance};
+
+    \end{tikzpicture}
+    \caption{Hierarchical Clustering (HC) illustrated with a dendrogram. Points (A, B, C, D, E) represent data, and the merging process shows how clusters are formed based on distance.}
+    \label{fig:hierarchical_clustering}
+\end{figure}
+
+\subsection*{Conceptual Explanation}
+
+\begin{itemize}
+    \item \textbf{Hierarchical Clustering Process:} 
+    Hierarchical clustering (HC) is an unsupervised machine learning algorithm used to group data into clusters. It creates a tree-like structure (dendrogram) to represent how clusters are merged based on their similarity.
+
+    \item \textbf{Steps Illustrated:}
+    \begin{enumerate}
+        \item \textbf{Start with Data Points:} Each data point (A, B, C, D, E) begins as its own cluster.
+        \item \textbf{Merge Closest Clusters:} Clusters are merged iteratively based on a similarity metric (e.g., Euclidean distance). For instance, A and B form \textit{Cluster 1}, and C and D form \textit{Cluster 2}.
+        \item \textbf{Final Merge:} Larger clusters are combined until all points belong to a single cluster.
+    \end{enumerate}
+
+    \item \textbf{Cutting the Dendrogram:} 
+    Cutting the dendrogram at a specific height (distance threshold) determines the number of clusters:
+    \begin{itemize}
+        \item A low cut height results in many small clusters.
+        \item A higher cut height produces fewer, larger clusters.
+    \end{itemize}
+
+    \item \textbf{Key Insights:}
+    \begin{itemize}
+        \item The \textit{height} of branches reflects the distance (dissimilarity) between clusters.
+        \item HC does not require predefining the number of clusters.
+    \end{itemize}
+\end{itemize}
+
+\newpage
+\section{Assignment 12}
+
+\subsection*{What is PCA?}
+Principal Component Analysis (PCA) is a technique used to reduce the dimensionality of data while retaining as much variance as possible. It transforms the data into a new coordinate system where:
+\begin{itemize}
+    \item \textbf{PC1} (Principal Component 1): Captures the maximum variance in the data.
+    \item \textbf{PC2, PC3, ...}: Orthogonal components capturing decreasing amounts of variance.
+\end{itemize}
+
+The idea is to find new axes (principal components) that maximize the variance and minimize redundancy.
+
+\subsection*{Illustration of PCA}
+The plot below demonstrates the PCA process on a 2D dataset:
+
+
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[scale=1]
+        \begin{axis}[
+            width=10cm,
+            height=10cm,
+            xlabel={$x_1$},
+            ylabel={$x_2$},
+            axis lines=middle,
+            xtick=\empty,
+            ytick=\empty,
+            title={Original Data and Principal Components}
+        ]
+        % Scatter points
+        \addplot[only marks, blue, mark size=1.5pt] coordinates {
+            (1,2) (2,3) (3,5) (4,6) (5,7) (6,8) (7,9) (8,11) (9,12)
+        };
+
+        % Principal component 1
+        \addplot[red, thick, domain=0:12, samples=2] {0.5 * x} node[pos=1.1, above, red] {PC1};
+
+        % Principal component 2
+        \addplot[red, thick, domain=0:12, samples=2] (-x,0.5 * x) node[pos=1.1, left, red] {PC2};
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Visualization of the principal components in 2D space.}
+    \label{fig:pca}
+\end{figure}
+
+\subsection*{Interpretation of the Plot}
+
+\begin{itemize}
+    \item The blue points represent the original dataset in the \(x_1\)-\(x_2\) space.
+    \item The red lines show the new principal components (PC1 and PC2). These components form the new basis for the data, with PC1 capturing the maximum variance.
+    \item The data can be projected onto PC1 to reduce it to a 1D representation, preserving most of the variance.
+\end{itemize}
+
+
+
+\subsection*{Projection of Data onto PC1}
+The second plot illustrates how the original data points are projected onto the first principal component (PC1):
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[scale=1.5]
+        \begin{axis}[
+        width=10cm,
+        height=8cm,
+        xlabel={$x_1$},
+        ylabel={$x_2$},
+        axis lines=middle,
+        xtick=\empty,
+        ytick=\empty,
+        title={Projection onto PC1}
+    ]
+    % Scatter points
+    \addplot[only marks, blue, mark size=1.5pt] coordinates {
+        (1,2) (2,3) (3,5) (4,6) (5,7) (6,8) (7,9) (8,11) (9,12)
+    };
+
+    % Principal component 1 line
+    \addplot[red, thick, domain=0:12, samples=2] {0.5 * x} node[pos=1.1, above, red] {PC1};
+
+    % Projected points
+    \addplot[only marks, black, mark=x] coordinates {
+        (1,1.5) (2,2.5) (3,4) (4,5) (5,6) (6,7) (7,8) (8,10) (9,11)
+    };
+
+    % Connecting lines for projection
+    \foreach \x/\y in {1/2, 2/3, 3/5, 4/6, 5/7, 6/8, 7/9, 8/11, 9/12} {
+        \addplot[gray, dashed] coordinates {(\x, \y) (\x, {0.5 * \x})};
+    }
+    \end{axis}
+   
+    \end{tikzpicture}
+    \caption{Projection of the original data points onto PC1.}
+    \label{fig:projection}
+\end{figure}
+
+\subsection*{Interpretation of the Projection}
+\begin{itemize}
+    \item The blue dots represent the original data points in 2D space.
+    \item The red line is the first principal component (PC1), capturing the maximum variance in the data.
+    \item The black crosses (\(\times\)) are the projections of the original points onto PC1.
+    \item The gray dashed lines show the distance of each data point to the projected point, representing the loss of information when reducing dimensions.
+    \item This demonstrates how PCA transforms data by focusing on the most significant variation while simplifying the data representation.
+\end{itemize}
+
+By projecting onto PC1, we reduce the data from 2D to 1D while retaining most of the variance. This is the essence of PCA in dimensionality reduction.
 \end{document}
